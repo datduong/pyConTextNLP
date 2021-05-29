@@ -28,11 +28,13 @@ reports = [
     """IMPRESSION: No definite pneumothorax""",
     """IMPRESSION:  New opacity at the left lower lobe consistent with pneumonia.""", 
 
-    """patient is 8 years old""", 
-    """she is 7 yr old""",
-    """this person is 7 years of age""",
-    """girl is 10 months""",
-    """Age 7"""
+    """Patient is 8 years old.""", 
+    """She is 7 yr old.""",
+    """This person is not 7 years of age.""",
+    """Jack is 10 months old.""",
+    """Age 7 yrs.""", 
+    """Age: 7""", 
+    """He has depression for 2 years."""
     
 ]
 
@@ -50,13 +52,13 @@ def markup_sentence(s, modifiers, targets, prune_inactive=True):
     markup.cleanText()
     markup.markItems(modifiers, mode="modifier")
     markup.markItems(targets, mode="target")
-    # markup.pruneMarks()
-    # markup.dropMarks('Exclusion')
+    markup.pruneMarks()
+    markup.dropMarks('Exclusion')
     # apply modifiers to any targets within the modifiers scope
     markup.applyModifiers()
-    # markup.pruneSelfModifyingRelationships()
-    # if prune_inactive:
-    #     markup.dropInactiveModifiers()
+    markup.pruneSelfModifyingRelationships()
+    if prune_inactive:
+        markup.dropInactiveModifiers()
     return markup
 
 
@@ -75,22 +77,23 @@ for report in reports:
 
 print (rslts)
 
-for r in rslts:
-    context.addMarkup(r)
+
+# for r in rslts:
+#     context.addMarkup(r)
 
 
-clrs = {\
-    "bowel_obstruction": "blue",
-    "inflammation": "blue",
-    "definite_negated_existence": "red",
-    "probable_negated_existence": "indianred",
-    "ambivalent_existence": "orange",
-    "probable_existence": "forestgreen",
-    "definite_existence": "green",
-    "historical": "goldenrod",
-    "indication": "pink",
-    "acute": "golden"
-}
+# clrs = {\
+#     "bowel_obstruction": "blue",
+#     "inflammation": "blue",
+#     "definite_negated_existence": "red",
+#     "probable_negated_existence": "indianred",
+#     "ambivalent_existence": "orange",
+#     "probable_existence": "forestgreen",
+#     "definite_existence": "green",
+#     "historical": "goldenrod",
+#     "indication": "pink",
+#     "acute": "golden"
+# }
 
 
 
